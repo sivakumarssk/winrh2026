@@ -60,22 +60,8 @@ export default function PlansPage() {
     setPaymentGateway(e.target.value);
   };
 
-  const fetchCountryData = async () => {
-    try {
-        const response = await axios.get("https://restcountries.com/v3.1/all");
-        const countries = response.data.map((country) => ({
-            name: country.name.common,
-            code: country.cca2,
-        }));
-        setCountryData(countries.sort((a, b) => a.name.localeCompare(b.name))); // Sort alphabetically
-    } catch (error) {
-        console.error(error);
-        alert("Failed to load country data.");
-    }
-};
 
 useEffect(()=>{
-  fetchCountryData()
   guideApi()
 },[])
 
@@ -243,14 +229,8 @@ useEffect(()=>{
           </div> */}
           <div className="form-group">
             <label htmlFor="country">Country</label>
-            <select id="country" name="country" required value={formData.country} onChange={handleInputChange}>
-            <option value="">Select country</option>
-                            {countryData.map((country) => (
-                                <option key={country.code} value={country.name}>
-                                    {country.name}
-                                </option>
-                            ))}
-            </select>
+            <input type="text" id="country" name="country" placeholder="Enter Your Country" required value={formData.country} onChange={handleInputChange}/>
+
           </div>
           <div className="form-group">
             <label htmlFor="address">Billing Address:</label>
