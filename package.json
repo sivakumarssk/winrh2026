@@ -3,10 +3,10 @@
   "version": "1.4.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 30010",
+    "dev": "next dev -p 30016",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint -p 30010"
+    "lint": "next lint -p 30016"
   },
   "dependencies": {
     "@paypal/react-paypal-js": "^8.7.0",

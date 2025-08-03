@@ -18,6 +18,9 @@ import Speakerskey from "@/components/HomeDefault/Speakerskey";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ImageGallery from "@/components/HomeDefault/ImageGallery";
+import Image from "next/image";
+import "./page.css";
+// import CME from '@/'
 
 interface HomeData {
   // Define the structure of the expected data from the API response
@@ -44,7 +47,7 @@ export default function Home() {
   const imageApi = async (): Promise<void> => {
     try {
       const response = await axios.get("https://admin.winrh2026.org/api/event-with-images");
-      console.log(response,'ghnfgh');
+      console.log(response, 'ghnfgh');
       setImageData(response.data);
     } catch (error: any) {
       console.error(error);
@@ -53,47 +56,58 @@ export default function Home() {
   };
 
   // console.log(homeData);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     homeApi()
-  },[])
+  }, [])
 
   return (
     <>
-      <Navbar />
+      <div style={{ position: 'relative' }}>
+        <Navbar />
 
-      <MainBanner data={homeData}/>
+        <MainBanner data={homeData} />
 
-      <AboutUsContent data={homeData}/>
+        <AboutUsContent data={homeData} />
 
-      <Speakerskey data={homeData?.KeynoteSpeakers}/>
-      
-      <Speakers data={homeData?.speaker}/>
+        <Speakerskey data={homeData?.KeynoteSpeakers} />
 
-
-      <Topics data={homeData} />
-
-      <WhyUs />
-      
-
-      <EventSchedules data={homeData} />
-
-      {/* <ImageGallery data={imageData || []}/> */}
+        <Speakers data={homeData?.speaker} />
 
 
-      {/* <FunFact /> */}
+        <Topics data={homeData} />
 
-      <Register data={homeData} />
+        <WhyUs />
 
-      {/* <Partner /> */}
 
-      {/* <LatestNews /> */}
+        <EventSchedules data={homeData} />
 
-      {/* <BuyTicket /> */}
+        {/* <ImageGallery data={imageData || []}/> */}
 
-      {/* <Subscribe /> */}
 
-      <Footer />
+        {/* <FunFact /> */}
+
+        <Register data={homeData} />
+
+        {/* <Partner /> */}
+
+        {/* <LatestNews /> */}
+
+        {/* <BuyTicket /> */}
+
+        {/* <Subscribe /> */}
+
+        <Footer />
+      <div
+        className="cme-float-image">
+        <Image
+         src={"/images/CME.jpg"}
+         alt="CWE" 
+         width={150}
+         height={150}/>
+      </div>
+      </div>
+
     </>
   );
 }
